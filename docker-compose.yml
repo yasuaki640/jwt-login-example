@@ -28,7 +28,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     volumes:
-      - ./client:/usr/src/app
+      - ./client:/app
     command: yarn start
     ports:
       - "3000:3000"
