@@ -20,7 +20,7 @@ services:
       - ./server:/app
     ports:
       - "8080:8080"
-      - "5050:5050"
+      - "5005:5005"
 
   client:
     container_name: client

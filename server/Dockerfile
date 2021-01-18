@@ -4,6 +4,6 @@ WORKDIR /app
 
 RUN apk add --no-cache alpine-sdk
 
-CMD [ "./gradlew","bootRun","--args=\"-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5050\"" ]
+CMD [ "./gradlew","bootRun"]
 
-EXPOSE 8000
+EXPOSE 8080
