@@ -5,6 +5,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import LoginForm from "./components/LoginForm";
 
 function App() {
     return (
@@ -29,7 +30,7 @@ function App() {
             renders the first one that matches the current URL. */}
                     <Switch>
                         <Route path="/login">
-                            <Login/>
+                            <LoginForm/>
                         </Route>
                         <Route path="/users">
                             <Users/>
