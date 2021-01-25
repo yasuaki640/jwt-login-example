@@ -3,21 +3,41 @@ import 'react-bootstrap/Form'
 import 'react-bootstrap/Button';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {useState} from "react";
 
 export const LoginForm = () => {
+    const [loginId, setLoginId] = useState('');
+    const handleLoginIdChange = e => setLoginId(e.target.value);
+
+    const [password, setPassword] = useState('');
+    const handlePasswordChange = e => setPassword(e.target.value);
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        alert('loginId : ' + loginId);
+        alert('password : ' + password);
+    };
+
     return (
-        <Form>
-            <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email"/>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicLoginId">
+                <Form.Label>LoginId address</Form.Label>
+                <Form.Control type="text"
+                              placeholder="Enter loginId"
+                              value={loginId}
+                              onChange={handleLoginIdChange}/>
                 <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.<br/>
+                    We'll never share your loginId with anyone else.<br/>
                 </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password"/>
+                <Form.Control type="password"
+                              placeholder="Password"
+                              value={password}
+                              onChange={handlePasswordChange}
+                />
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out"/>
