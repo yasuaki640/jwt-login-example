@@ -21,7 +21,7 @@ export const LoginForm = () => {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formLoginId">
-                <Form.Label>LoginId address</Form.Label>
+                <Form.Label>Login ID </Form.Label>
                 <Form.Control type="text"
                               placeholder="Enter loginId"
                               value={loginId}
