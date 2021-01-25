@@ -1,11 +1,6 @@
 import './App.css';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-import LoginForm from "./components/LoginForm";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {LoginForm} from "./components/LoginForm";
 
 function App() {
     return (

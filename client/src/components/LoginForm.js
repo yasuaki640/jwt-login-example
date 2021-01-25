@@ -4,7 +4,7 @@ import 'react-bootstrap/Button';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function LoginForm() {
+export const LoginForm = () => {
     return (
         <Form>
             <Form.Group controlId="formBasicEmail">
@@ -28,5 +28,3 @@ function LoginForm() {
         </Form>
     );
 }
-
-export default LoginForm;
