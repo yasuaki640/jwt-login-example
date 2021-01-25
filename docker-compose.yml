@@ -21,6 +21,11 @@ services:
     ports:
       - "8080:8080"
       - "5005:5005"
+    environment:
+      - DATASOURCE_USER=${DB_USER}
+      - DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - DATASOURCE_NAME=${DB_NAME}
+      - DATASOURCE_HOST=${DB_HOST}
 
   client:
     container_name: client
