@@ -49,10 +49,6 @@ function Index() {
     return <h2>Index</h2>;
 }
 
-function Login() {
-    return <h2>Login</h2>;
-}
-
 function Users() {
     return <h2>Users</h2>;
 }
