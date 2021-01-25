@@ -20,7 +20,7 @@ export const LoginForm = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicLoginId">
+            <Form.Group controlId="formLoginId">
                 <Form.Label>LoginId address</Form.Label>
                 <Form.Control type="text"
                               placeholder="Enter loginId"
@@ -31,7 +31,7 @@ export const LoginForm = () => {
                 </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password"
                               placeholder="Password"
