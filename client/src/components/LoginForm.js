@@ -7,7 +7,6 @@ import {useState} from "react";
 
 
 export const LoginForm = () => {
-    const endPoint = process.env.REACT_APP_SERVER_ENDPOINT;
 
     const [loginId, setLoginId] = useState('');
     const handleLoginIdChange = e => setLoginId(e.target.value);
