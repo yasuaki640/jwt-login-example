@@ -1,4 +1,7 @@
 openapi: 3.0.0
+tags:
+  - name: auth
+    description: Authorize a user operation
 info:
   title: keisanmondaisan
   version: '1.0'
