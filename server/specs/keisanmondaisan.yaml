@@ -11,9 +11,41 @@ info:
   description: Operations of a server for keisanmondaisan app
 servers:
   - url: 'https://localhost:8080'
-paths: { }
+paths:
+  /auth:
+    post:
+      summary: ''
+      operationId: post-auth
+      tags:
+        - auth
+      responses:
+        '200':
+          $ref: "#/components/responses/200-OK"
+      description: authorization for a user
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                loginId:
+                  type: string
+                password:
+                  type: string
+        description: ''
 components:
-  schemas: { }
-  securitySchemes: { }
-
-  
+  schemas: {}
+  securitySchemes: {}
+  responses:
+    200-OK:
+      description: "OK"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+              message:
+                type: string
