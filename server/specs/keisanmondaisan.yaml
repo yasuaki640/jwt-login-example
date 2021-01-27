@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: keisanmondaisan
+  version: '1.0'
+  contact:
+    name: Yasuaki Watanabe
+    email: yasuaki640@gmail.com
+  license:
+    name: MIT
+    url: 'http://opensource.org/licenses/mit-license.php'
+  description: Operations of a server for keisanmondaisan app
+servers:
+  - url: 'https://localhost:8080'
+paths: { }
+components:
+  schemas: { }
+  securitySchemes: { }
+
+  
