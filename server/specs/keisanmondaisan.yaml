@@ -23,7 +23,21 @@ paths:
         - auth
       responses:
         '200':
-          $ref: "#/components/responses/200-OK"
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                  message:
+                    type: string
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: contains session id
       description: authorization for a user
       parameters: []
       requestBody:
@@ -48,7 +62,7 @@ components:
           schema:
             type: object
             properties:
-              status:
+              statusCode:
                 type: number
               message:
                 type: string
