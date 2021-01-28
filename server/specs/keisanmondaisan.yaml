@@ -50,12 +50,33 @@ paths:
                   type: string
         description: ''
 components:
-  schemas: {}
+  schemas:
+    ClientError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                example: invalid_value
   securitySchemes: {}
   responses:
+    4XX-ClientError:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ClientError'
+    5XX-ServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
             type: object
             properties:
               message:
+                type: string
+                example: Unexpected error occured
