@@ -31,6 +31,12 @@ paths:
                 properties:
                   message:
                     type: string
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
           headers:
             Set-Cookie:
               schema:
