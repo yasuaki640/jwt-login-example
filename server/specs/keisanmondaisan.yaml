@@ -70,13 +70,13 @@ components:
                 example: invalid_value
   securitySchemes: {}
   responses:
-    4XX-ClientError:
+    400-ClientError:
       description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ClientError'
-    5XX-ServerError:
+    500-ServerError:
       description: Internal server error
       content:
         application/json:
