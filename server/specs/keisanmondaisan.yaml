@@ -29,8 +29,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  statusCode:
-                    type: number
                   message:
                     type: string
           headers:
@@ -62,7 +60,5 @@ components:
           schema:
             type: object
             properties:
-              statusCode:
-                type: number
               message:
                 type: string
