@@ -67,7 +67,6 @@ components:
             properties:
               message:
                 type: string
-                example: invalid_value
   securitySchemes: {}
   responses:
     400-ClientError:
@@ -85,4 +84,3 @@ components:
             properties:
               message:
                 type: string
-                example: Unexpected error occured
