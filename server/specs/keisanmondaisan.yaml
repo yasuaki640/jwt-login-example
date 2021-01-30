@@ -43,10 +43,10 @@ paths:
             Set-Cookie:
               schema:
                 type: string
-              description: contains session id
+              description: Contains session id
         '500':
           $ref: "#/components/responses/500-ServerError"
-      description: authorization for a user
+      description: Authorization for a user
       parameters: []
       requestBody:
         content:
