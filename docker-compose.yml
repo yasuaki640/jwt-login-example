@@ -4,7 +4,7 @@ services:
     image: postgres:13.1
     container_name: db
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:${DB_PORT}"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -26,6 +26,7 @@ services:
       - DATASOURCE_PASSWORD=${DB_PASSWORD}
       - DATASOURCE_NAME=${DB_NAME}
       - DATASOURCE_HOST=${DB_HOST}
+      - DATASOURCE_PORT=${DB_PORT}
 
   client:
     container_name: client
