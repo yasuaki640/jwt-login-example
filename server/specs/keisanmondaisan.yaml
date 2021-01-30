@@ -17,13 +17,15 @@ servers:
 paths:
   /auth:
     post:
-      summary: ''
+      security:
+        - cookieAuth: [ ]
+      summary: 'Authenticate user'
       operationId: post-auth
       tags:
         - auth
       responses:
         '200':
-          description: OK
+          description: Successfully authenticated
           content:
             application/json:
               schema:
@@ -69,7 +71,11 @@ components:
             properties:
               message:
                 type: string
-  securitySchemes: {}
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
   responses:
     400-ClientError:
       description: Bad request
