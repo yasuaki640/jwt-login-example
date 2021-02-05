@@ -4,7 +4,9 @@ import 'react-bootstrap/Button';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {useState} from "react";
+import axios from "axios";
 
+const url = process.env.REACT_APP_SERVER_ENDPOINT;
 
 export const LoginForm = () => {
 
@@ -16,8 +18,12 @@ export const LoginForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        alert('loginId : ' + loginId);
-        alert('password : ' + password);
+
+        let response = await axios.post(url + "/auth", {
+                loginId: loginId,
+                password: password
+            }
+        ).catch(err => alert(err));
     };
 
     return (
