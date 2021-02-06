@@ -9,7 +9,6 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
-      - DATABASE_HOST=${DB_HOST}
 
   server:
     container_name: server
@@ -25,7 +24,7 @@ services:
       - DATASOURCE_USER=${DB_USER}
       - DATASOURCE_PASSWORD=${DB_PASSWORD}
       - DATASOURCE_NAME=${DB_NAME}
-      - DATASOURCE_HOST=${DB_HOST}
+      - DATASOURCE_HOST=db
       - DATASOURCE_PORT=${DB_PORT}
 
   client:
