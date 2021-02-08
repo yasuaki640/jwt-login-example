@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class AuthResultResponse {
+public class AuthResult {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

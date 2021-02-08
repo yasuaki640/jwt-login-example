@@ -32,6 +32,6 @@ public class User {
 
     private LocalDateTime deletedAt;
 
-    @OneToMany(targetEntity = AuthResultResponse.class)
-    private List<AuthResultResponse> AuthResultResponses;
+    @OneToMany(targetEntity = AuthResult.class)
+    private List<AuthResult> AuthResultResponses;
 }

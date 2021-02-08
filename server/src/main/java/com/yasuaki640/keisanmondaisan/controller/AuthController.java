@@ -1,6 +1,6 @@
 package com.yasuaki640.keisanmondaisan.controller;
 
-import com.yasuaki640.keisanmondaisan.model.AuthResultResponse;
+import com.yasuaki640.keisanmondaisan.model.AuthResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class AuthController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<AuthResultResponse> authUser(HttpServletResponse response) {
+    public ResponseEntity<AuthResult> authUser(HttpServletResponse response) {
 
         Cookie cookie = new Cookie("session_id", "test id.");
         cookie.setMaxAge(265 * 24 * 60 * 60);
@@ -28,6 +28,6 @@ public class AuthController {
         response.addCookie(cookie);
         response.setStatus(HttpStatus.OK.value());
 
-        return new ResponseEntity<>(new AuthResultResponse(), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthResult(), HttpStatus.OK);
     }
 }
