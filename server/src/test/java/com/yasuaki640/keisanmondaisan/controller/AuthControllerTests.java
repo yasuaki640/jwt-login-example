@@ -17,7 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(value = AuthController.class)
-class AuthControllerTest {
+class AuthControllerTests {
 
     @Autowired
     AuthController controller;
