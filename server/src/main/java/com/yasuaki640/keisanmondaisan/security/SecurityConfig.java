@@ -18,10 +18,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests(authorize -> authorize
-                .mvcMatchers(HttpMethod.PUT,"/users/**")
+        http.authorizeRequests()
+                .mvcMatchers(HttpMethod.PUT, "/users/**")
                 .authenticated()
-                .mvcMatchers(HttpMethod.DELETE,"/users/**")
-                .authenticated());
+                .mvcMatchers(HttpMethod.DELETE, "/users/**")
+                .authenticated()
+                .and()
+
+                // LOGIN
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .permitAll()
+                .usernameParameter("loginId")
+                .passwordParameter("pass")
+                .and();
+
     }
 }
