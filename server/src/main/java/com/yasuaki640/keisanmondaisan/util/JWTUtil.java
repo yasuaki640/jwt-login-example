@@ -12,15 +12,15 @@ import java.util.Map;
 @Component
 public class JWTUtil {
 
-
     private static String secret;
 
     private static final long TOKEN_VAILD_DURATION = 1000L * 60L * 60L;
 
     private final UserServiceImpl service;
 
-    public JWTUtil(UserServiceImpl service, @Value("${app.jwt-token-secret:example-secret}") String secret
-                   ) {
+    public JWTUtil(UserServiceImpl service,
+                   @Value("${app.jwt-token-secret:example-secret}") String secret
+    ) {
         this.service = service;
         this.secret = secret;
     }
