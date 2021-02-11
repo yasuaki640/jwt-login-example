@@ -12,7 +12,7 @@ import java.util.Map;
 @Component
 public class JWTUtil {
 
-    private static String secret;
+    private final String secret;
 
     private static final long TOKEN_VAILD_DURATION = 1000L * 60L * 60L;
 
