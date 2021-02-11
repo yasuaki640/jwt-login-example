@@ -22,15 +22,11 @@ class AuthControllerTests {
     @Autowired
     AuthController controller;
 
+    @Autowired
     MockMvc mockMvc;
 
     @Autowired
     ObjectMapper objectMapper;
-
-    @BeforeEach
-    void setup(WebApplicationContext wac) {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
 
     @Test
     void testLoginSuccess() throws Exception {
