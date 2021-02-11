@@ -1,6 +1,7 @@
 package com.yasuaki640.keisanmondaisan.service.impl;
 
 import com.yasuaki640.keisanmondaisan.model.User;
+import com.yasuaki640.keisanmondaisan.repository.UserRepository;
 import com.yasuaki640.keisanmondaisan.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,12 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    UserRepository repository;
+
+    public UserServiceImpl(UserRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional(readOnly = true)
     @Override
