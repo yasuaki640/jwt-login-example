@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    UserRepository repository;
+    private final UserRepository repository;
 
     public UserServiceImpl(UserRepository repository) {
         this.repository = repository;

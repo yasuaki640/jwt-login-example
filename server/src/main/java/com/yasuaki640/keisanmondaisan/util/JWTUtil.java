@@ -18,9 +18,7 @@ public class JWTUtil {
 
     private final UserServiceImpl service;
 
-    public JWTUtil(UserServiceImpl service,
-                   @Value("${app.jwt-token-secret:example-secret}") String secret
-    ) {
+    public JWTUtil(UserServiceImpl service, @Value("${app.jwt-token-secret:example-secret}") String secret) {
         this.service = service;
         this.secret = secret;
     }

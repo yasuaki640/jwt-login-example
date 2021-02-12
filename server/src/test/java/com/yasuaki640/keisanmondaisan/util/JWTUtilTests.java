@@ -27,7 +27,8 @@ public class JWTUtilTests {
 
     @Test
     void test_createToken() {
-        User user = User.builder().id(1L)
+        User user = User.builder()
+                .id(1L)
                 .loginId("yasu")
                 .password("pass")
                 .build();

@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.flywaydb:flyway-core'
     compile "org.springframework.boot:spring-boot-starter-security"
     compileOnly 'org.projectlombok:lombok'
+    testCompile 'org.dbunit:dbunit:2.7.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
