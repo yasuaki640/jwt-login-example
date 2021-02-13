@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <USERS
-            ID="4"
-            LOGIN_ID="yasu_test"
-            PASSWORD="$2a$06$w6krG8sROk2gmeFGqIOY8.LnAoK194HbNawHbrxAIFwJ95r.nZT/W"
-            CREATED_AT="2021-02-05 14:12:46.644570"
+    <users
+            id="4"
+            login_id="yasu_test"
+            password="$2a$06$w6krG8sROk2gmeFGqIOY8.LnAoK194HbNawHbrxAIFwJ95r.nZT/W"
+            created_at="2021-02-05 14:12:46.644570"
     />
 </dataset>
