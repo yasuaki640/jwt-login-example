@@ -4,6 +4,7 @@ import com.yasuaki640.keisanmondaisan.repository.UserRepository;
 import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.filter.DefaultColumnFilter;
@@ -58,12 +59,15 @@ class UserServiceImplTest {
         IDataSet databaseDataSet = databaseTester.getConnection().createDataSet();
         ITable actualTable = databaseDataSet.getTable("users");
 
-        ITable filteredExpectedTable = DefaultColumnFilter.excludedColumnsTable(
-                expectedTable, new String[]{"created_at", "updated_at", "deleted_at"});
-        ITable filteredActualTable = DefaultColumnFilter.excludedColumnsTable(
-                actualTable, new String[]{"created_at", "updated_at", "deleted_at"});
+        ITable filteredExpectedTable = getFilteredTable(expectedTable);
+        ITable filteredActualTable = getFilteredTable(actualTable);
 
         Assertion.assertEquals(filteredActualTable, filteredExpectedTable);
 
+    }
+
+    private ITable getFilteredTable(ITable expectedTable) throws DataSetException {
+        return DefaultColumnFilter.excludedColumnsTable(
+                expectedTable, new String[]{"created_at", "updated_at", "deleted_at"});
     }
 }
