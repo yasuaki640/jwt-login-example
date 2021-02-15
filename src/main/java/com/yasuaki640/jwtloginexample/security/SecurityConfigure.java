@@ -1,4 +1,4 @@
-package com.yasuaki640.jwtloginexample;
+package com.yasuaki640.jwtloginexample.security;
 
 import com.yasuaki640.jwtloginexample.filter.JwtRequestFilter;
 import com.yasuaki640.jwtloginexample.service.MyUserDetailsService;
