@@ -10,19 +10,24 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloResource {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+
+    private final MyUserDetailsService userDetailsService;
+
+    private final JwtUtil jwtTokenUtil;
 
     @Autowired
-    private MyUserDetailsService userDetailsService;
-
-    @Autowired
-    private JwtUtil jwtTokenUtil;
+    public HelloResource(AuthenticationManager authenticationManager, MyUserDetailsService userDetailsService, JwtUtil jwtTokenUtil) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
 
     @GetMapping("/hello")
     public String hello() {
