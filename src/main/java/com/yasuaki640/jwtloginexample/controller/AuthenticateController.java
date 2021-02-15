@@ -1,4 +1,4 @@
-package com.yasuaki640.jwtloginexample;
+package com.yasuaki640.jwtloginexample.controller;
 
 import com.yasuaki640.jwtloginexample.model.AuthenticationRequest;
 import com.yasuaki640.jwtloginexample.model.AuthenticationResponse;
@@ -10,23 +10,24 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloResource {
+public class AuthenticateController {
+
+    private final AuthenticationManager authenticationManager;
+
+    private final MyUserDetailsService userDetailsService;
+
+    private final JwtUtil jwtTokenUtil;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private MyUserDetailsService userDetailsService;
-
-    @Autowired
-    private JwtUtil jwtTokenUtil;
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello World!!";
+    public AuthenticateController(AuthenticationManager authenticationManager, MyUserDetailsService userDetailsService, JwtUtil jwtTokenUtil) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @PostMapping("/authenticate")
