@@ -1,6 +1,6 @@
 package com.yasuaki640.jwtloginexample.filter;
 
-import com.yasuaki640.jwtloginexample.service.MyUserDetailsService;
+import com.yasuaki640.jwtloginexample.service.impl.UserDetailsServiceImpl;
 import com.yasuaki640.jwtloginexample.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,12 +20,12 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private final MyUserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     private final JwtUtil jwtUtil;
 
     @Autowired
-    public JwtRequestFilter(MyUserDetailsService userDetailsService, JwtUtil jwtUtil) {
+    public JwtRequestFilter(UserDetailsServiceImpl userDetailsService, JwtUtil jwtUtil) {
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
     }

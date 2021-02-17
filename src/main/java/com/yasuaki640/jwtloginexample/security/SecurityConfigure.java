@@ -1,7 +1,7 @@
 package com.yasuaki640.jwtloginexample.security;
 
 import com.yasuaki640.jwtloginexample.filter.JwtRequestFilter;
-import com.yasuaki640.jwtloginexample.service.MyUserDetailsService;
+import com.yasuaki640.jwtloginexample.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,19 +17,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfigure extends WebSecurityConfigurerAdapter {
 
-    private final MyUserDetailsService myUserDetailsService;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     private final JwtRequestFilter jwtRequestFilter;
 
     @Autowired
-    public SecurityConfigure(MyUserDetailsService myUserDetailsService, JwtRequestFilter jwtRequestFilter) {
-        this.myUserDetailsService = myUserDetailsService;
+    public SecurityConfigure(UserDetailsServiceImpl userDetailsServiceImpl, JwtRequestFilter jwtRequestFilter) {
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
         this.jwtRequestFilter = jwtRequestFilter;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService);
+        auth.userDetailsService(userDetailsServiceImpl);
     }
 
     @Bean

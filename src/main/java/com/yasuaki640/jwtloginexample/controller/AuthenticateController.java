@@ -2,7 +2,7 @@ package com.yasuaki640.jwtloginexample.controller;
 
 import com.yasuaki640.jwtloginexample.model.AuthenticationRequest;
 import com.yasuaki640.jwtloginexample.model.AuthenticationResponse;
-import com.yasuaki640.jwtloginexample.service.MyUserDetailsService;
+import com.yasuaki640.jwtloginexample.service.impl.UserDetailsServiceImpl;
 import com.yasuaki640.jwtloginexample.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +19,12 @@ public class AuthenticateController {
 
     private final AuthenticationManager authenticationManager;
 
-    private final MyUserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     private final JwtUtil jwtTokenUtil;
 
     @Autowired
-    public AuthenticateController(AuthenticationManager authenticationManager, MyUserDetailsService userDetailsService, JwtUtil jwtTokenUtil) {
+    public AuthenticateController(AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService, JwtUtil jwtTokenUtil) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
@@ -36,7 +36,6 @@ public class AuthenticateController {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
             );
-
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or pasword", e);
         }
