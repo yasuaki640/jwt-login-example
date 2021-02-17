@@ -40,4 +40,19 @@ public class AuthenticateControllerTests {
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath("$.jwt").isNotEmpty());
     }
+
+    @Test
+    void test_authenticateFailure() throws Exception {
+        AuthenticationRequest authenticationRequest = new AuthenticationRequest("bad", "wrong");
+        String requestJson = objectMapper.writeValueAsString(authenticationRequest);
+
+        RequestBuilder builder = MockMvcRequestBuilders
+                .post("/authenticate")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson);
+
+        mockMvc.perform(builder)
+                .andExpect(status().isForbidden());
+    }
 }
