@@ -35,5 +35,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
-
 }
