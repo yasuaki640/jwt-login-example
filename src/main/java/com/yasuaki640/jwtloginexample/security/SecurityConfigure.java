@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -44,11 +45,20 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .disable()
 
                 .authorizeRequests()
-                .antMatchers("/authenticate")
+                .mvcMatchers("/authenticate","/h2-console/**")
                 .permitAll()
 
                 .anyRequest()
                 .authenticated()
+                .and()
+
+                // enable h2 console
+                .csrf()
+                .ignoringAntMatchers("/h2-console/**")
+                .and()
+                .headers()
+                .frameOptions()
+                .sameOrigin()
                 .and()
 
                 .sessionManagement()
