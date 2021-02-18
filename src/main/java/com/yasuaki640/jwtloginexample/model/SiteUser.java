@@ -32,7 +32,14 @@ public class SiteUser {
     private String email;
 
     private int gender;
+
     private boolean admin;
+
     private String role;
+
     private boolean active = true;
+
+    public static SiteUser of(String username, String password) {
+        return SiteUser.builder().username(username).password(password).admin(false).build();
+    }
 }
