@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -26,9 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return createUserDetails(SiteUser.builder()
-                .username("yasu").password("pass")
-                .build());
+        return createUserDetails(repository.findByUsername(username));
     }
 
     private UserDetails createUserDetails(SiteUser user) {
