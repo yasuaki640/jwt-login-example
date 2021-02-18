@@ -1,4 +1,4 @@
-package com.yasuaki640.jwtloginexample.security;
+package com.yasuaki640.jwtloginexample.config;
 
 import com.yasuaki640.jwtloginexample.filter.JwtRequestFilter;
 import com.yasuaki640.jwtloginexample.service.impl.UserDetailsServiceImpl;
@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -45,20 +44,11 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .disable()
 
                 .authorizeRequests()
-                .mvcMatchers("/authenticate","/h2-console/**")
+                .mvcMatchers("/authenticate")
                 .permitAll()
 
                 .anyRequest()
                 .authenticated()
-                .and()
-
-                // enable h2 console
-                .csrf()
-                .ignoringAntMatchers("/h2-console/**")
-                .and()
-                .headers()
-                .frameOptions()
-                .sameOrigin()
                 .and()
 
                 .sessionManagement()
