@@ -116,7 +116,8 @@ class UserControllerTests {
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath("$.id").value(modiedTestUser.getId()))
                 .andExpect(jsonPath("$.username").value(MOD_USERNAME))
-                .andExpect(jsonPath("$.email").value(MOD_EMAIL));
+                .andExpect(jsonPath("$.email").value(MOD_EMAIL))
+                .andExpect(jsonPath("$.password").value(UserController.PASSWORD_MASK));
     }
 
     @Test
