@@ -58,11 +58,12 @@ class UserControllerTests {
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isNotEmpty())
-                .andExpect(jsonPath("$.username").value(user.getUsername()));
+                .andExpect(jsonPath("$.username").value(user.getUsername()))
+                .andExpect(jsonPath("$.password").value(UserController.PASSWORD_MASK));
     }
 
     @Test
-    @WithMockUser(username = "yasu",password = "pass")
+    @WithMockUser(username = "yasu", password = "pass")
     void test_getById() throws Exception {
         RequestBuilder builder = MockMvcRequestBuilders
                 .get("/user/{id}", testUser.getId())
@@ -74,6 +75,6 @@ class UserControllerTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath("$.username").value(testUser.getUsername()))
-                .andExpect(jsonPath("$.password").value("not display"));
+                .andExpect(jsonPath("$.password").value(UserController.PASSWORD_MASK));
     }
 }
