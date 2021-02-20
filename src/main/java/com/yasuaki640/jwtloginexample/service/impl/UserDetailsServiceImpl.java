@@ -30,8 +30,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return createUserDetails(repository.findByUsername(username));
     }
 
+
     private UserDetails createUserDetails(SiteUser user) {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
+    }
+
+    public SiteUser createUser(SiteUser user) {
+        return repository.save(user);
     }
 }

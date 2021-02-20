@@ -4,6 +4,7 @@ import com.yasuaki640.jwtloginexample.filter.JwtRequestFilter;
 import com.yasuaki640.jwtloginexample.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -45,6 +46,9 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 .mvcMatchers("/authenticate")
+                .permitAll()
+
+                .mvcMatchers(HttpMethod.POST,"/user")
                 .permitAll()
 
                 .anyRequest()
