@@ -77,4 +77,16 @@ class UserControllerTests {
                 .andExpect(jsonPath("$.username").value(testUser.getUsername()))
                 .andExpect(jsonPath("$.password").value(UserController.PASSWORD_MASK));
     }
+
+    @Test
+    @WithMockUser(username = "yasu", password = "pass")
+    void test_getById_notFound() throws Exception {
+        RequestBuilder builder = MockMvcRequestBuilders
+                .get("/user/{id}", testUser.getId() + 1L)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(builder)
+                .andExpect(status().isNotFound());
+    }
 }
