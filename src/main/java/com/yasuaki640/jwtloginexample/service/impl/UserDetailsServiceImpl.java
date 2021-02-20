@@ -39,4 +39,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public SiteUser createUser(SiteUser user) {
         return repository.save(user);
     }
+
+    public Optional<SiteUser> findById(Long id) {
+        return repository.findById(id);
+    }
 }

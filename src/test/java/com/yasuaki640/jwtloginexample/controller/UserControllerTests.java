@@ -1,8 +1,8 @@
 package com.yasuaki640.jwtloginexample.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yasuaki640.jwtloginexample.model.SiteUser;
+import com.yasuaki640.jwtloginexample.repository.SiteUserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
@@ -28,8 +27,15 @@ class UserControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private SiteUserRepository repository;
+
+    private SiteUser testUser = SiteUser.of("yasu", "pass");
+
     @BeforeEach
     void setUp() {
+        repository.deleteAll();
+        repository.save(testUser);
     }
 
     @AfterEach
@@ -38,7 +44,7 @@ class UserControllerTests {
 
     @Test
     void test_registerUser() throws Exception {
-        SiteUser user = SiteUser.of("yasu", "pass");
+        SiteUser user = SiteUser.of("aki", "pass");
 
         String requestJson = objectMapper.writeValueAsString(user);
 
@@ -53,5 +59,20 @@ class UserControllerTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isNotEmpty())
                 .andExpect(jsonPath("$.username").value(user.getUsername()));
+    }
+
+    @Test
+    @WithMockUser(username = "yasu",password = "pass")
+    void test_getById() throws Exception {
+        RequestBuilder builder = MockMvcRequestBuilders
+                .get("/user/{id}", 1L)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(builder)
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$").isNotEmpty())
+                .andExpect(jsonPath("$.username").value(testUser.getUsername()));
     }
 }

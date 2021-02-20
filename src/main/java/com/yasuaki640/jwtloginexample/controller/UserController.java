@@ -5,9 +5,9 @@ import com.yasuaki640.jwtloginexample.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -25,5 +25,13 @@ public class UserController {
                 .status(HttpStatus.CREATED)
                 .body(service.createUser(user));
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<SiteUser> getUserById(@PathVariable(value = "id") Long id) {
+        Optional<SiteUser> user = service.findById(id);
+        return user.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 
 }
