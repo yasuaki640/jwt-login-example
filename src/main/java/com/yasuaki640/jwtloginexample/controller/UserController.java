@@ -41,5 +41,13 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PutMapping
+    public ResponseEntity<SiteUser> updateUser(@RequestBody SiteUser user) {
+        SiteUser responseUser = service.updateUser(user);
+        responseUser.setPassword(PASSWORD_MASK);
+
+        return ResponseEntity.ok(responseUser);
+    }
+
 
 }

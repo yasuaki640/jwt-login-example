@@ -43,4 +43,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public Optional<SiteUser> findById(Long id) {
         return repository.findById(id);
     }
+
+    public SiteUser updateUser(SiteUser user) {
+        return repository.save(user);
+    }
 }

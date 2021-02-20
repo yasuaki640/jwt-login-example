@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Optional;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
@@ -88,5 +90,32 @@ class UserControllerTests {
 
         mockMvc.perform(builder)
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(username = "yasu", password = "pass")
+    void test_updateUser() throws Exception {
+        SiteUser modiedTestUser = repository.findByUsername(testUser.getUsername());
+
+        final String MOD_USERNAME = "modified";
+        final String MOD_EMAIL = "tako@gmail.com";
+        modiedTestUser.setUsername(MOD_USERNAME);
+        modiedTestUser.setEmail(MOD_EMAIL);
+
+        String requestJson = objectMapper.writeValueAsString(modiedTestUser);
+
+        RequestBuilder builder = MockMvcRequestBuilders
+                .put("/user")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson);
+
+        mockMvc.perform(builder)
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$").isNotEmpty())
+                .andExpect(jsonPath("$.id").value(modiedTestUser.getId()))
+                .andExpect(jsonPath("$.username").value(MOD_USERNAME))
+                .andExpect(jsonPath("$.email").value(MOD_EMAIL));
     }
 }
