@@ -32,7 +32,7 @@ class UserControllerTests {
     @Autowired
     private SiteUserRepository repository;
 
-    private SiteUser testUser = SiteUser.of("yasu", "pass");
+    private final SiteUser testUser = SiteUser.of("yasu", "pass");
 
     @BeforeEach
     void setUp() {
