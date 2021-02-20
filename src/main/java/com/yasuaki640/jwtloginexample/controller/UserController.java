@@ -43,7 +43,12 @@ public class UserController {
 
     @PutMapping
     public ResponseEntity<SiteUser> updateUser(@RequestBody SiteUser user) {
-        SiteUser responseUser = service.updateUser(user);
+        if (service.findById(user.getId()).isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .build();
+        }
+
+        SiteUser responseUser = service.createUser(user);
         responseUser.setPassword(PASSWORD_MASK);
 
         return ResponseEntity.ok(responseUser);

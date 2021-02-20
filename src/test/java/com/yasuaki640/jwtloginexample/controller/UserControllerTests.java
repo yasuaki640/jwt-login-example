@@ -118,4 +118,22 @@ class UserControllerTests {
                 .andExpect(jsonPath("$.username").value(MOD_USERNAME))
                 .andExpect(jsonPath("$.email").value(MOD_EMAIL));
     }
+
+    @Test
+    @WithMockUser(username = "yasu", password = "pass")
+    void test_updateUser_targetUser_doesNotExists() throws Exception {
+        SiteUser modifiedTestUser = repository.findByUsername(testUser.getUsername());
+        modifiedTestUser.setId(testUser.getId() + 1);
+
+        String requestJson = objectMapper.writeValueAsString(modifiedTestUser);
+
+        RequestBuilder builder = MockMvcRequestBuilders
+                .put("/user")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson);
+
+        mockMvc.perform(builder)
+                .andExpect(status().isNotFound());
+    }
 }
