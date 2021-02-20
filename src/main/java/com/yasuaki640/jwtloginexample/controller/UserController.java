@@ -5,6 +5,7 @@ import com.yasuaki640.jwtloginexample.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -29,6 +30,8 @@ public class UserController {
     @GetMapping("/user/{id}")
     public ResponseEntity<SiteUser> getUserById(@PathVariable(value = "id") Long id) {
         Optional<SiteUser> user = service.findById(id);
+        user.ifPresent((u) -> u.setPassword("not display"));
+
         return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
