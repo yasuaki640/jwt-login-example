@@ -12,11 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
@@ -36,12 +40,12 @@ class UserControllerTests {
 
     @BeforeEach
     void setUp() {
-        repository.deleteAll();
         repository.save(testUser);
     }
 
     @AfterEach
     void tearDown() {
+        repository.deleteAll();
     }
 
     @Test
@@ -136,5 +140,19 @@ class UserControllerTests {
 
         mockMvc.perform(builder)
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(username = "yasu", password = "pass")
+    void test_deleteUserById() throws Exception {
+        RequestBuilder builder = MockMvcRequestBuilders
+                .delete("/user/{id}", testUser.getId());
+
+        mockMvc.perform(builder)
+                .andExpect(status().isNoContent());
+
+        assertTrue(repository
+                .findById(testUser.getId())
+                .isEmpty());
     }
 }

@@ -47,4 +47,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public SiteUser updateUser(SiteUser user) {
         return repository.save(user);
     }
+
+    public void deleteUserById(Long id) {
+        repository.deleteById(id);
+    }
 }
