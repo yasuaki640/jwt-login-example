@@ -30,7 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return createUserDetails(repository.findByUsername(username));
     }
 
-
     private UserDetails createUserDetails(SiteUser user) {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
@@ -42,10 +41,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public Optional<SiteUser> findById(Long id) {
         return repository.findById(id);
-    }
-
-    public SiteUser updateUser(SiteUser user) {
-        return repository.save(user);
     }
 
     public void deleteUserById(Long id) {
