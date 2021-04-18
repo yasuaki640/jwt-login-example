@@ -38,6 +38,7 @@ public class SiteUser {
 
     private String role;
 
+    @Builder.Default
     private boolean active = true;
 
     public static SiteUser of(String username, String password) {
